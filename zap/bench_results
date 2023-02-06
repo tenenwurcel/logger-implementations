@@ -1,0 +1,10 @@
+goos: linux
+goarch: amd64
+pkg: logger-implementations/zap
+cpu: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
+BenchmarkLoggerInterfaceWithZap-8           	 1334149	       901.4 ns/op
+BenchmarkLoggerInterfaceWithZap10Fields-8   	  656205	      1618 ns/op
+BenchmarkZap-8                              	 1963653	       623.7 ns/op
+BenchmarkZap10Fields-8                      	 1237356	       961.6 ns/op
+PASS
+ok  	logger-implementations/zap	7.213s

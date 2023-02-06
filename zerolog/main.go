@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"github.com/rs/zerolog"
 	loggerI "github.com/tenenwurcel/logger"
 	"os"
@@ -17,64 +16,44 @@ func (l *logger) SetLevel(level loggerI.Level) {
 	l.zl.Level(zerolog.Level(level))
 }
 
-func (l *logger) Debug(msg string, fields ...loggerI.Field) {
+func (l *logger) Debug(msg string, fields ...interface{}) {
 	e := l.zl.Debug()
 
-	makeLog(e, msg, fields...)
+	makeLog(e, msg, fields)
 }
 
-func (l *logger) Info(msg string, fields ...loggerI.Field) {
+func (l *logger) Info(msg string, fields ...interface{}) {
 	e := l.zl.Info()
 
-	makeLog(e, msg, fields...)
+	makeLog(e, msg, fields)
 }
 
-func (l *logger) Warn(msg string, fields ...loggerI.Field) {
+func (l *logger) Warn(msg string, fields ...interface{}) {
 	e := l.zl.Warn()
 
-	makeLog(e, msg, fields...)
+	makeLog(e, msg, fields)
 }
 
-func (l *logger) Error(msg string, fields ...loggerI.Field) {
+func (l *logger) Error(msg string, fields ...interface{}) {
 	e := l.zl.Error()
 
-	makeLog(e, msg, fields...)
+	makeLog(e, msg, fields)
 }
 
-func (l *logger) Fatal(msg string, fields ...loggerI.Field) {
+func (l *logger) Fatal(msg string, fields ...interface{}) {
 	e := l.zl.Fatal()
 
-	makeLog(e, msg, fields...)
+	makeLog(e, msg, fields)
 }
 
-func (l *logger) Panic(msg string, fields ...loggerI.Field) {
+func (l *logger) Panic(msg string, fields ...interface{}) {
 	e := l.zl.Panic()
 
-	makeLog(e, msg, fields...)
+	makeLog(e, msg, fields)
 }
 
-func makeLog(loggerEvent *zerolog.Event, msg string, fields ...loggerI.Field) {
-	if loggerEvent == nil {
-		return
-	}
-
-	for _, f := range fields {
-		switch f.GetType() {
-		case loggerI.StringType:
-			loggerEvent = loggerEvent.Str(f.GetKey(), f.ToString())
-		case loggerI.IntType:
-			loggerEvent = loggerEvent.Int(f.GetKey(), f.ToInt())
-		case loggerI.Int64Type:
-			loggerEvent = loggerEvent.Int64(f.GetKey(), f.ToInt64())
-		case loggerI.Float64Type:
-			loggerEvent = loggerEvent.Float64(f.GetKey(), f.ToFloat64())
-		case loggerI.BoolType:
-			loggerEvent = loggerEvent.Bool(f.GetKey(), f.ToBool())
-		case loggerI.InterfaceType:
-			loggerEvent = loggerEvent.Interface(f.GetKey(), f.ToInterface())
-		}
-	}
-
+func makeLog(loggerEvent *zerolog.Event, msg string, fields []interface{}) {
+	loggerEvent.Fields(fields)
 	loggerEvent.Msg(msg)
 }
 
@@ -86,12 +65,5 @@ func main() {
 	l := loggerI.New(ml)
 
 	l.SetLevel(loggerI.DebugLevel)
-
-	ctx := context.Background()
-
-	ctx = l.WithContext(ctx)
-
-	l2 := loggerI.FromContext(ctx)
-
-	l2.Debug("Hello world", loggerI.String("name", "John Doe"), loggerI.Int("age", 42))
+	l.Debug("Hello world", "key", "value", "keyInt", 42)
 }

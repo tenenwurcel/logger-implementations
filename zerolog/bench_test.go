@@ -19,10 +19,10 @@ func BenchmarkLoggerInterfaceWithZerolog(b *testing.B) {
 
 	for n := 0; n < b.N; n++ {
 		l.Debug("Hello world",
-			loggerI.String("service", "dummy"),
-			loggerI.String("version", "0.0.1"),
-			loggerI.String("name", "John Doe"),
-			loggerI.Int("age", 42),
+			"name", "John Doe",
+			"age", 42,
+			"service", "dummy",
+			"version", "0.0.1",
 		)
 	}
 }
@@ -39,16 +39,16 @@ func BenchmarkLoggerInterfaceWithZerolog10Fields(b *testing.B) {
 
 	for n := 0; n < b.N; n++ {
 		l.Debug("Hello world",
-			loggerI.String("field1", "value1"),
-			loggerI.String("field2", "value2"),
-			loggerI.String("field3", "value3"),
-			loggerI.String("field4", "value4"),
-			loggerI.String("field5", "value5"),
-			loggerI.String("field6", "value6"),
-			loggerI.String("service", "dummy"),
-			loggerI.String("version", "0.0.1"),
-			loggerI.String("name", "John Doe"),
-			loggerI.Int("age", 42),
+			"name", "John Doe",
+			"age", 42,
+			"service", "dummy",
+			"version", "0.0.1",
+			"field1", "value1",
+			"field2", "value2",
+			"field3", "value3",
+			"field4", "value4",
+			"field5", "value5",
+			"field6", "value6",
 		)
 	}
 }

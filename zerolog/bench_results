@@ -1,10 +1,10 @@
 goos: linux
 goarch: amd64
 pkg: logger-implementations/zerolog
-cpu: Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz
-BenchmarkLoggerInterfaceWithZerolog-12            	 2923921	       468.6 ns/op
-BenchmarkLoggerInterfaceWithZerolog10Fields-12    	 1404884	      1020 ns/op
-BenchmarkZerolog-12                               	 7767096	       150.0 ns/op
-BenchmarkZerolog10Fields-12                       	 4470663	       268.6 ns/op
+cpu: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
+BenchmarkLoggerInterfaceWithZerolog-8           	 5652145	       215.9 ns/op
+BenchmarkLoggerInterfaceWithZerolog10Fields-8   	 3105399	       384.6 ns/op
+BenchmarkZerolog-8                              	 8419424	       138.0 ns/op
+BenchmarkZerolog10Fields-8                      	 4864164	       254.7 ns/op
 PASS
-ok  	logger-implementations/zerolog	8.787s
+ok  	logger-implementations/zerolog	5.821s
