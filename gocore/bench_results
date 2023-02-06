@@ -2,6 +2,7 @@ goos: linux
 goarch: amd64
 pkg: logger-implementations/gocore
 cpu: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
-BenchmarkGocoreWith10Fields-8   	  126426	      9031 ns/op
+BenchmarkGocoreWith10Fields-8                   	  119830	      9932 ns/op
+BenchmarkGocoreWith10FieldsWithLoggerConfig-8   	  139570	      8740 ns/op
 PASS
-ok  	logger-implementations/gocore	1.241s
+ok  	logger-implementations/gocore	2.616s
